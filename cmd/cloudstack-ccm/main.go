@@ -39,7 +39,7 @@ import (
 
 	"github.com/spf13/pflag"
 
-	_ "github.com/apache/cloudstack-kubernetes-provider" // our cloud package
+	_ "github.com/ablecloud-team/ablestack-kubernetes-provider" // our cloud package
 )
 
 func main() {

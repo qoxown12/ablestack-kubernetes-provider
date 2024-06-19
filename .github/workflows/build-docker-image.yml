@@ -22,7 +22,7 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - "*"
   pull_request:
 
 permissions:
@@ -34,7 +34,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.repository == 'apache/cloudstack-kubernetes-provider'
+    if: github.repository == 'ablecloud-team/ablestack-kubernetes-provider'
     runs-on: ubuntu-22.04
     steps:
       - name: Login to Docker Registry
@@ -50,7 +50,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          
+
       - name: Set Docker image TAG
         run: echo "TAG=$(if [ "${{ github.event_name }}" = "pull_request" ];then echo "pr${{ github.event.pull_request.number}}"; elif [ "${{ github.ref_name }}" = "main" ];then cat version; else echo ${{ github.ref_name }};fi)" >> $GITHUB_ENV
 

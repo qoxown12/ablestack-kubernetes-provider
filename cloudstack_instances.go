@@ -25,7 +25,7 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/apache/cloudstack-go/v2/cloudstack"
+	"github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/types"
 	cloudprovider "k8s.io/cloud-provider"

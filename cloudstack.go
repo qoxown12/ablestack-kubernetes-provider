@@ -26,7 +26,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/apache/cloudstack-go/v2/cloudstack"
+	"github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack"
 	"gopkg.in/gcfg.v1"
 	"k8s.io/apimachinery/pkg/types"
 	cloudprovider "k8s.io/cloud-provider"

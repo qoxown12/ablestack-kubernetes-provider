@@ -1,18 +1,19 @@
 # CloudStack Kubernetes Provider
 
-[![](https://img.shields.io/github/release/apache/cloudstack-kubernetes-provider.svg?logo=github&style=flat-square "Release")](https://github.com/apache/cloudstack-kubernetes-provider/releases)
+[![](https://img.shields.io/github/release/ablecloud-team/ablestack-kubernetes-provider.svg?logo=github&style=flat-square "Release")](https://github.com/ablecloud-team/ablestack-kubernetes-provider/releases)
 [![](https://img.shields.io/badge/license-Apache%202.0-blue.svg?color=%23282661&logo=apache&style=flat-square "Apache 2.0 license")](/LICENSE-2.0)
 [![](https://img.shields.io/badge/language-Go-%235adaff.svg?logo=go&style=flat-square "Go language")](https://golang.org)
-[![](https://img.shields.io/docker/v/apache/cloudstack-kubernetes-provider?label=docker%20hub&logo=docker&style=flat-square "Docker Hub Image Version")](https://hub.docker.com/r/apache/cloudstack-kubernetes-provider/)
+[![](https://img.shields.io/docker/v/ablecloud-team/ablestack-kubernetes-provider?label=docker%20hub&logo=docker&style=flat-square "Docker Hub Image Version")](https://hub.docker.com/r/ablecloud-team/ablestack-kubernetes-provider/)
 
 A Cloud Controller Manager to facilitate Kubernetes deployments on Cloudstack.
 
 Based on the old Cloudstack provider in Kubernetes was removed.
 
 Refer:
-* https://github.com/kubernetes/kubernetes/tree/release-1.15/pkg/cloudprovider/providers/cloudstack
-* https://github.com/kubernetes/enhancements/issues/672
-* https://github.com/kubernetes/enhancements/issues/88
+
+- https://github.com/kubernetes/kubernetes/tree/release-1.15/pkg/cloudprovider/providers/cloudstack
+- https://github.com/kubernetes/enhancements/issues/672
+- https://github.com/kubernetes/enhancements/issues/88
 
 ## Deployment
 
@@ -26,12 +27,13 @@ The provider can also be manually deployed as follows :
 
 ### Kubernetes
 
-Prebuilt containers are posted on [Docker Hub](https://hub.docker.com/r/apache/cloudstack-kubernetes-provider).
+Prebuilt containers are posted on [Docker Hub](https://hub.docker.com/r/ablecloud-team/ablestack-kubernetes-provider).
 
 To configure API access to your CloudStack management server, you need to create a secret containing a `cloud-config`
 that is suitable for your environment.
 
 `cloud-config` should look like this:
+
 ```ini
 [Global]
 api-url = <CloudStack API URL>
@@ -45,11 +47,13 @@ ssl-no-verify = <Disable SSL certificate validation: true or false (optional)>
 The access token needs to be able to fetch VM information and deploy load balancers in the project or domain where the nodes reside.
 
 To create the secret, use the following command:
+
 ```bash
 kubectl -n kube-system create secret generic cloudstack-secret --from-file=cloud-config
 ```
 
 You can then use the provided example [deployment.yaml](/deployment.yaml) to deploy the controller:
+
 ```bash
 kubectl apply -f deployment.yaml
 ```
@@ -84,16 +88,18 @@ It is recommended to launch `kubelet` with the following parameter:
 This will treat the node as 'uninitialized' and cause the CCM to apply metadata labels from CloudStack automatically.
 
 Supported labels for Kubernetes versions up to 1.16 are:
-* kubernetes.io/hostname (= the instance name)
-* beta.kubernetes.io/instance-type (= the compute offering)
-* failure-domain.beta.kubernetes.io/zone (= the zone)
-* failure-domain.beta.kubernetes.io/region (also = the zone)
+
+- kubernetes.io/hostname (= the instance name)
+- beta.kubernetes.io/instance-type (= the compute offering)
+- failure-domain.beta.kubernetes.io/zone (= the zone)
+- failure-domain.beta.kubernetes.io/region (also = the zone)
 
 Supported labels for Kubernetes versions 1.17 and later are:
-* kubernetes.io/hostname (= the instance name)
-* node.kubernetes.io/instance-type (= the compute offering)
-* topology.kubernetes.io/zone (= the zone)
-* topology.kubernetes.io/region (also = the zone)
+
+- kubernetes.io/hostname (= the instance name)
+- node.kubernetes.io/instance-type (= the compute offering)
+- topology.kubernetes.io/zone (= the zone)
+- topology.kubernetes.io/region (also = the zone)
 
 It is also possible to trigger this process manually by issuing the following command:
 
@@ -132,8 +138,8 @@ To build the controller with correct versioning, some build flags need to be pas
 A Makefile is provided that sets these build flags to automatically derived values.
 
 ```bash
-go get github.com/apache/cloudstack-kubernetes-provider
-cd ${GOPATH}/src/github.com/apache/cloudstack-kubernetes-provider
+go get github.com/ablecloud-team/ablestack-kubernetes-provider
+cd ${GOPATH}/src/github.com/ablecloud-team/ablestack-kubernetes-provider
 make
 ```
 
