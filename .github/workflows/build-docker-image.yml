@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set Docker repository name
-        run: echo "DOCKER_REPOSITORY=apache" >> $GITHUB_ENV
+        run: echo "DOCKER_REPOSITORY=ablecloudteam" >> $GITHUB_ENV
 
       - uses: actions/checkout@v4
         with:
@@ -55,9 +55,9 @@ jobs:
         run: echo "TAG=$(if [ "${{ github.event_name }}" = "pull_request" ];then echo "pr${{ github.event.pull_request.number}}"; elif [ "${{ github.ref_name }}" = "main" ];then cat version; else echo ${{ github.ref_name }};fi)" >> $GITHUB_ENV
 
       - name: Set Docker image FULL TAG
-        run: echo "FULL_TAG=$(if [ "${{ secrets.DOCKER_REGISTRY }}" = "" ];then echo ${DOCKER_REPOSITORY}/cloudstack-kubernetes-provider:${TAG};else echo ${{ secrets.DOCKER_REGISTRY }}/${DOCKER_REPOSITORY}/cloudstack-kubernetes-provider:${TAG};fi)" >> $GITHUB_ENV
+        run: echo "FULL_TAG=$(if [ "${{ secrets.DOCKER_REGISTRY }}" = "" ];then echo ${DOCKER_REPOSITORY}/cloudstack-kubernetes-provider:${TAG};else echo ${{ secrets.DOCKER_REGISTRY }}/${DOCKER_REPOSITORY}/ablestack-kubernetes-provider:${TAG};fi)" >> $GITHUB_ENV
 
-      - name: Build the Docker image for cloudstack-kubernetes-provider
+      - name: Build the Docker image for ablestack-kubernetes-provider
         run: docker build . --file Dockerfile --tag ${FULL_TAG}
 
       - name: Push Docker image to Docker Registry
