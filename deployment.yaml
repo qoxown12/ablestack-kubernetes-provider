@@ -171,7 +171,9 @@ spec:
         - key: node.cloudprovider.kubernetes.io/uninitialized
           value: "true"
           effect: NoSchedule
-- apiVersion: v1
-kind: Namespace
+---
+apiVersion: v1
+kind: ServiceAccount
 metadata:
-  name: devtjtjt
+  name: cloud-controller-manager
+  namespace: kube-system2
