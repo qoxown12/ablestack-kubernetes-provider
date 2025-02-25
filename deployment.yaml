@@ -173,7 +173,6 @@ spec:
           effect: NoSchedule
 ---
 apiVersion: v1
-kind: ServiceAccount
+kind: Namespace
 metadata:
-  name: cloud-controller-manager
-  namespace: kube-system2
+  name: test-namespace
