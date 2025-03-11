@@ -602,7 +602,7 @@ spec:
     spec:
       serviceAccountName: prometheus
       containers:
-      - image: prom/prometheus
+      - image: prom/prometheus:v3.2.1
         name: prometheus
         command: 
         - "prometheus"
